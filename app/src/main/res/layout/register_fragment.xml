@@ -40,7 +40,7 @@
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
     <EditText
-        android:id="@+id/textView4"
+        android:id="@+id/nameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Nombre"
@@ -49,30 +49,31 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/textView5"
+        android:id="@+id/lastNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Apellido"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
     <EditText
-        android:id="@+id/textView3"
+        android:id="@+id/generoTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Sexo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/lastNameTextView" />
 
     <EditText
-        android:id="@+id/textVi"
+        android:id="@+id/ageTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Edad"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/generoTextView"
+        android:inputType="numberSigned" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,15 +1,15 @@
 package com.example.tablaregistroscovid
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.tablaregistroscovid.repository.RepositoryPerson
 import kotlinx.android.synthetic.main.fragment_first.*
 
 /**
@@ -18,10 +18,44 @@ import kotlinx.android.synthetic.main.fragment_first.*
 class InfectedListFrangment : Fragment() {
 
     var listGeneralCovid: List<DataModelTable> = listOf(
-        DataModelTable(idPerson = 1, firstName = "Angélica", lastName = "Liliana", date = "Hoy", state = EState.VACUNADO, age = 10, picture = -1, sex = ESex.FEMENINO),
-        DataModelTable(idPerson = 2, firstName = "Angélica", lastName = "Liliana", date = "Hoy", state = EState.SANO, age = 20, picture = -1, sex = ESex.MASCULINO),
-        DataModelTable(idPerson = 3, firstName = "Angélica", lastName = "Liliana", date = "Hoy", state = EState.CONTAGIADO, age = 30, picture = -1, sex = ESex.FEMENINO)
+        DataModelTable(
+            idPerson = 1,
+            firstName = "Angélica",
+            lastName = "Liliana",
+            date = "Hoy",
+            state = EState.VACUNADO,
+            age = 10,
+            picture = -1,
+            sex = ESex.FEMENINO
+        ),
+        DataModelTable(
+            idPerson = 2,
+            firstName = "Angélica",
+            lastName = "Liliana",
+            date = "Hoy",
+            state = EState.SANO,
+            age = 20,
+            picture = -1,
+            sex = ESex.MASCULINO
+        ),
+        DataModelTable(
+            idPerson = 3,
+            firstName = "Angélica",
+            lastName = "Liliana",
+            date = "Hoy",
+            state = EState.CONTAGIADO,
+            age = 30,
+            picture = -1,
+            sex = ESex.FEMENINO
+        )
     )
+
+    private val generalViewModel: RegisterViewModel by lazy {
+        ViewModelProvider(
+            this,
+            ViewModelFactory(RepositoryPerson(this.requireActivity().application))
+        ).get(RegisterViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +68,11 @@ class InfectedListFrangment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initRecycler()
+        generalViewModel.personList.observe(viewLifecycleOwner, Observer { personsData ->
+
+            initRecycler(personsData)
+
+        })
 
         addRegisterButton.setOnClickListener {
 
@@ -46,8 +84,8 @@ class InfectedListFrangment : Fragment() {
     /**
     Función que inicializa el recycler dentro del cuál se encontrarán los elementos
      */
-    fun initRecycler(){
-        listRecycler.adapter = TableAdapter(listGeneralCovid)
+    fun initRecycler(listPersons: List<DataModelTable>) {
+        listRecycler.adapter = TableAdapter(listPersons)
         listRecycler.layoutManager = LinearLayoutManager(this.context)
     }
 }
