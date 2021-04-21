@@ -13,6 +13,9 @@ import com.example.tablaregistroscovid.sqlite.entities.PersonEntity
     ], version = 1
 )
 
+/**
+ * Clase que genera la instancia de la DB
+ */
 abstract class DatabasePerson : RoomDatabase() {
 
     abstract fun getPersonDao(): PersonDao
@@ -20,9 +23,11 @@ abstract class DatabasePerson : RoomDatabase() {
     companion object {
         private const val DATABASE_NAME = "DATA_BASE_PERSON"
 
-        @Volatile
         private var INSTANCE: DatabasePerson? = null
 
+        /**
+         *Función que genera una única instancia (Patrón de diseño Singleton)
+         */
         fun getInstance(context: Application): DatabasePerson? {
             INSTANCE ?: synchronized(this) {
                 INSTANCE = Room.databaseBuilder(

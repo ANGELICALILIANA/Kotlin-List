@@ -17,10 +17,6 @@
         <action
             android:id="@+id/action_FirstFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
-        <argument
-            android:name="idPacient"
-            app:argType="integer"
-            android:defaultValue="-1" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"

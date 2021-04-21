@@ -15,6 +15,9 @@ import java.util.*
 
 class RegisterFragment : Fragment() {
 
+    /**
+     * Instancia de los datos obtenido de la BD
+     */
     private val generalViewModel: RegisterViewModel by lazy {
         ViewModelProvider(
             this,
@@ -35,8 +38,7 @@ class RegisterFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        //viewModel = ViewModelProvider(this).get(RegisterViewModel::class.java)
-        // TODO: Use the ViewModel
+
         btnSaveData.setOnClickListener {
 
             val sexVadation = generoTextView.text.toString()
@@ -70,6 +72,4 @@ class RegisterFragment : Fragment() {
             findNavController().navigateUp()
         }
     }
-
-
 }

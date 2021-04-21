@@ -7,6 +7,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "PersonEntity")
 
+/**
+ * Clase donde se crea la DB, la labla y cada una de sus columnas
+ */
 data class PersonEntity(
         @NonNull
         @PrimaryKey(autoGenerate = true)
